@@ -21,6 +21,7 @@ set(EXAMPLE3_SRC_LIST "${CMAKE_CURRENT_SOURCE_DIR}/examples/example3.c")
 set(EXAMPLE4_SRC_LIST "${CMAKE_CURRENT_SOURCE_DIR}/examples/example4.c")
 set(EXAMPLE5_SRC_LIST "${CMAKE_CURRENT_SOURCE_DIR}/examples/example5.c")
 set(EXAMPLE6_SRC_LIST "${CMAKE_CURRENT_SOURCE_DIR}/examples/example6.c")
+set(EXAMPLE7_SRC_LIST "${CMAKE_CURRENT_SOURCE_DIR}/examples/example7.c")
 set(MINIZ_TESTER_SRC_LIST
     "${CMAKE_CURRENT_SOURCE_DIR}/tests/miniz_tester.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/tests/timer.cpp")
@@ -40,6 +41,8 @@ target_link_libraries(example6 miniz)
 if(${UNIX})
     target_link_libraries(example6 m)
 endif()
+add_executable(example7 ${EXAMPLE7_SRC_LIST})
+target_link_libraries(example7 miniz)
 
 # add_executable(miniz_tester ${MINIZ_TESTER_SRC_LIST})
 # target_link_libraries(miniz_tester miniz)

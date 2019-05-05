@@ -16,6 +16,12 @@ static const char *s_pStr =
   "Good morning Dr. Chandra. This is Hal. I am ready for my first lesson." \
   "Good morning Dr. Chandra. This is Hal. I am ready for my first lesson.";
 
+typedef struct _Header
+{
+    uint32_t src_len;
+    uint32_t cmp_len;
+}Header;
+
 int main(int argc, char *argv[])
 {
   uint step = 0;
@@ -63,7 +69,18 @@ int main(int argc, char *argv[])
       }
     }
 
+    Header header;
+    header.src_len = src_len;
+    header.cmp_len = cmp_len;
+    FILE *pfile = fopen("./out.zip", "wb");
+    fwrite(&header, sizeof(Header), 1, pfile );
+    fwrite(pCmp, cmp_len, 1, pfile);
+    fclose(pfile);
+
+      int len = sizeof(size_t);
+//    uncomp_len = 0;
     // Decompress.
+
     cmp_status = uncompress(pUncomp, &uncomp_len, pCmp, cmp_len);
     total_succeeded += (cmp_status == Z_OK);
 
